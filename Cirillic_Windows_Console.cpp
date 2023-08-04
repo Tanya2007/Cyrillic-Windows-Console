@@ -1,7 +1,10 @@
 #include <iostream>
 #include <string>
 
-#if defined (_WIN32)
+#define UTF8_encoded_file	1			//Indicates that the source file is encoded in utf8 
+							//(1 if yes, and 0 if no (i.e. if the file encoding is in ANSI)).
+
+#if defined (_WIN32) && UTF8_encoded_file
 #include <windows.h>
 #include <vector>
 #define _TBA UTF8_to_CP1251
@@ -36,10 +39,10 @@ int main()
 #endif
 	
 	std::string ch;
-	std::cout << _TBA("Привет!") << "\n";	//Convert Cyrillic alphabet from utf8 encoding to ANSI
+	std::cout << _TBA("Привет!") << "\n";		//Convert Cyrillic alphabet from utf8 encoding to ANSI
 
-	std::cin >> ch;							//here we enter the Cyrillic alphabet
-	std::cout << ch << "\n";				//everything is output correctly
+	std::cin >> ch;					//here we enter the Cyrillic alphabet
+	std::cout << ch << "\n";			//everything is output correctly
 	
 	char temp = ch.c_str()[0];
 	
